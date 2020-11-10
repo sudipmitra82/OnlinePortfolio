@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: 0.2
 env:
   variables:
@@ -23,4 +24,31 @@ artifacts:
   files:
       - '**/*'
   base-directory: 'dist*'
+=======
+version: 0.2
+env:
+  variables:
+    S3_BUCKET: "sudipmitra.com"
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+      - npm install -g @angular/cli
+  build:
+    commands:
+      - echo Build started on `date`
+      - ng build --prod --aot
+  post_build:
+     commands:
+      - aws s3 cp dist s3://${S3_BUCKET} --recursive
+      - echo Build completed on `date`
+artifacts:
+  files:
+      - '**/*'
+  base-directory: 'dist*'
+>>>>>>> 3bde0d41a66161564f065f422f8f2311e73cd942
   discard-paths: yes
