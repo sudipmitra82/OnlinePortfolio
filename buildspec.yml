@@ -23,5 +23,4 @@ artifacts:
   files:
       - '**/*'
   base-directory: 'dist*'
->>>>>>> 3bde0d41a66161564f065f422f8f2311e73cd942
   discard-paths: yes
